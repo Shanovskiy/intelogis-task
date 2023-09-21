@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DefaultOrderController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\FastOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[DeliveryController::class,"index"])->name("index");
+Route::get('/fast-order',[FastOrderController::class,"fastOrder"])->name("fast-order");
+Route::post('/fast-order',[FastOrderController::class,"calculation"])->name("fast-calculation");
+Route::get('/default-order',[DefaultOrderController::class,"defaultOrder"])->name("default-order");
+Route::post('/default-order',[DefaultOrderController::class,"calculation"])->name("default-calculation");
+
